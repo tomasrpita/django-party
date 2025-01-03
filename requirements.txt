@@ -5,8 +5,14 @@
 #    pip-compile
 #
 asgiref==3.8.1
-    # via django
+    # via
+    #   django
+    #   django-browser-reload
 django==5.1.4
+    # via
+    #   -r requirements.in
+    #   django-browser-reload
+django-browser-reload==1.17.0
     # via -r requirements.in
 iniconfig==2.0.0
     # via pytest
