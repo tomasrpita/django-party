@@ -608,6 +608,14 @@ video {
   background-color: rgb(58 106 164 / var(--tw-bg-opacity, 1));
 }
 
+.visible{
+  visibility: visible;
+}
+
+.collapse{
+  visibility: collapse;
+}
+
 .static{
   position: static;
 }
@@ -622,6 +630,18 @@ video {
 
 .inline-block{
   display: inline-block;
+}
+
+.inline{
+  display: inline;
+}
+
+.hidden{
+  display: none;
+}
+
+.transform{
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .resize{
