@@ -8,12 +8,24 @@ asgiref==3.8.1
     # via
     #   django
     #   django-browser-reload
+crispy-bootstrap5==2024.10
+    # via -r requirements.in
+crispy-tailwind==1.0.3
+    # via -r requirements.in
 django==5.1.4
     # via
     #   -r requirements.in
+    #   crispy-bootstrap5
+    #   crispy-tailwind
     #   django-browser-reload
+    #   django-crispy-forms
 django-browser-reload==1.17.0
     # via -r requirements.in
+django-crispy-forms==2.3
+    # via
+    #   -r requirements.in
+    #   crispy-bootstrap5
+    #   crispy-tailwind
 iniconfig==2.0.0
     # via pytest
 packaging==24.2

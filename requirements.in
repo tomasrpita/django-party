@@ -1,4 +1,8 @@
 Django==5.1.4,<6.0
+django-browser-reload==1.17.0
+# Plantillas para crispy form
+django-crispy-forms==2.3
+crispy-bootstrap5==2024.10
+crispy-tailwind==1.0.3
 pytest==8.3.4
 pytest-django==4.9.0
-django-browser-reload==1.17.0

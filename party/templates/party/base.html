@@ -9,7 +9,7 @@
     <script type="text/javascript" src="{% static '/party/js/alpine.min.js' %}" defer></script>
     <link href="{% static '/party/css/tailwind_output.css' %}" rel="stylesheet">
 </head>
-<body class="bg-custom-powder-light">
+<body class="bg-custom-powder-light" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <nav class="bg-custom-red">
         <a href="/"
             class="inline-block p-4 text-custom-powder-light font-dancing-script text-2xl"
