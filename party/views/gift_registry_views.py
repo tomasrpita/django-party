@@ -18,6 +18,7 @@ class GiftRegistryPage(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["party"] = Party.objects.get(uuid=self.kwargs["party_uuid"])
+        return context
 
 
 class GiftDetailPartial(DetailView):
