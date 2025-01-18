@@ -1,3 +1,8 @@
+from .gift_registry_views import (
+    GiftRegistryPage,
+    GiftUpdateFormPartial,
+    GiftDetailPartial,
+)
 from .new_party_views import (
     page_new_party,
     partial_check_party_date,
@@ -14,4 +19,7 @@ __all__ = [
     "page_new_party",
     "partial_check_party_date",
     "partial_check_invitation",
+    "GiftRegistryPage",
+    "GiftUpdateFormPartial",
+    "GiftDetailPartial",
 ]
