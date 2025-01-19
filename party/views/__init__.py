@@ -2,6 +2,7 @@ from .gift_registry_views import (
     GiftRegistryPage,
     GiftUpdateFormPartial,
     GiftDetailPartial,
+    delete_gift_partial,
 )
 from .new_party_views import (
     page_new_party,
@@ -22,4 +23,5 @@ __all__ = [
     "GiftRegistryPage",
     "GiftUpdateFormPartial",
     "GiftDetailPartial",
+    "delete_gift_partial",
 ]

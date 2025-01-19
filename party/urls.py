@@ -49,6 +49,11 @@ gift_registry_urlpatterns = [
         views.GiftUpdateFormPartial.as_view(),
         name="partial_gift_update",
     ),
+    path(
+        "gifts/<uuid:gift_uuid>/delete/",
+        views.delete_gift_partial,
+        name="partial_gift_delete",
+    ),
 ]
 
 
