@@ -22,59 +22,60 @@ def test_gift_registry_page_lists_gifts_for_party_by_id(
 
     assert response.status_code == 200
     assert list(response.context_data["gifts"]) == [gift_1, gift_2]
+    # assert response.context_data["gifts"][1].uuid == gift_2.uuid
 
 
-# def test_gift_detail_partial_returns_gift_detail_including_party(
-#     authenticated_client, create_user, django_user_model, create_party, create_gift
-# ):
-#     party = create_party(organizer=create_user)
-#     gift = create_gift(party=party)
+def test_gift_detail_partial_returns_gift_detail_including_party(
+    authenticated_client, create_user, django_user_model, create_party, create_gift
+):
+    party = create_party(organizer=create_user)
+    gift = create_gift(party=party)
 
-#     url = reverse("partial_gift_detail", args=[gift.uuid])
-#     response = authenticated_client(create_user).get(url)
+    url = reverse("partial_gift_detail", args=[gift.uuid])
+    response = authenticated_client(create_user).get(url)
 
-#     assert response.status_code == 200
-#     assert response.context_data["gift"] == gift
-#     assert response.context_data["party"] == party
-
-
-# def test_partial_gift_update_returns_gift_update_form(
-#     authenticated_client, create_user, create_party, create_gift
-# ):
-#     party = create_party(create_user)
-#     gift = create_gift(party=party)
-
-#     url = reverse("partial_gift_update", args=[gift.uuid])
-#     response = authenticated_client(create_user).get(url)
-
-#     assert response.status_code == 200
-#     assert "form" in response.context
-#     assert response.context["form"].instance == gift
+    assert response.status_code == 200
+    assert response.context_data["gift"] == gift
+    assert response.context_data["party"] == party
 
 
-# def test_partial_gift_update_updates_gift_and_returns_its_details_including_party_id(
-#     authenticated_client, create_user, create_party, create_gift
-# ):
-#     party = create_party(create_user)
-#     gift = create_gift(party=party)
+def test_partial_gift_update_returns_gift_update_form(
+    authenticated_client, create_user, create_party, create_gift
+):
+    party = create_party(create_user)
+    gift = create_gift(party=party)
 
-#     data = urlencode(
-#         {
-#             "gift": "Updated gift",
-#             "price": "50",
-#             "link": "https://updatedtestlink.com",
-#         }
-#     )
+    url = reverse("partial_gift_update", args=[gift.uuid])
+    response = authenticated_client(create_user).get(url)
 
-#     url = reverse("partial_gift_update", args=[gift.uuid])
-#     response = authenticated_client(create_user).put(
-#         url, content_type="application/json", data=data
-#     )
+    assert response.status_code == 200
+    assert "form" in response.context
+    assert response.context["form"].instance == gift
 
-#     assert Gift.objects.get(uuid=gift.uuid).gift == "Updated gift"
-#     assert Gift.objects.get(uuid=gift.uuid).price == 50.0
-#     assert Gift.objects.get(uuid=gift.uuid).link == "https://updatedtestlink.com"
 
-#     assert response.status_code == 200
-#     assert response.context["gift"].gift == "Updated gift"
-#     assert response.context["party"] == party
+def test_partial_gift_update_updates_gift_and_returns_its_details_including_party_id(
+    authenticated_client, create_user, create_party, create_gift
+):
+    party = create_party(create_user)
+    gift = create_gift(party=party)
+
+    data = urlencode(
+        {
+            "gift": "Updated gift",
+            "price": "50",
+            "link": "https://updatedtestlink.com",
+        }
+    )
+
+    url = reverse("partial_gift_update", args=[gift.uuid])
+    response = authenticated_client(create_user).put(
+        url, content_type="application/json", data=data
+    )
+
+    assert Gift.objects.get(uuid=gift.uuid).gift == "Updated gift"
+    assert Gift.objects.get(uuid=gift.uuid).price == 50.0
+    assert Gift.objects.get(uuid=gift.uuid).link == "https://updatedtestlink.com"
+
+    assert response.status_code == 200
+    assert response.context["gift"].gift == "Updated gift"
+    assert response.context["party"] == party

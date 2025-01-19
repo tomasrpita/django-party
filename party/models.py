@@ -28,7 +28,7 @@ class Party(models.Model):
 
 
 class Gift(models.Model):
-    uuid = models.URLField(primary_key=True, default=uuid.uuid4)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     gift = models.CharField(max_length=200)
     price = models.FloatField(blank=True, null=True)
     link = models.URLField(max_length=200, blank=True, null=True)
@@ -36,7 +36,7 @@ class Gift(models.Model):
 
 
 class Guest(models.Model):
-    uuid = models.URLField(primary_key=True, default=uuid.uuid4)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=200)
     attending = models.BooleanField(default=False)
     party = models.ForeignKey(Party, on_delete=models.CASCADE, related_name="guests")

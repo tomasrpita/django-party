@@ -52,8 +52,8 @@ class PartyForm(forms.ModelForm):
 
 
 class GiftForm(forms.ModelForm):
-    def __init__(self, *args, **kargs):
-        super().__init__(*args, **kargs)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
 
