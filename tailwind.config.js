@@ -7,7 +7,9 @@ module.exports = {
     './**/*.py'
   ],
   theme: {
-
+    safeList: [
+      "bg-green-800",
+    ],
     extend: {
       fontFamily: {
         "roboto": ["Roboto", "sans-serif"], // making possible to use classes font-roboto and font-dancing-script

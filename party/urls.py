@@ -61,10 +61,29 @@ gift_registry_urlpatterns = [
     ),
 ]
 
+guest_list_urlpatterns = [
+    path(
+        "party/<uuid:party_uuid>/guests/",
+        views.GuestListPage.as_view(),
+        name="page_guest_list",
+    ),
+    path(
+        "party/<uuid:party_uuid>/guests/mark-attending/",
+        views.mark_attending_partial,
+        name="partial_mark_attending",
+    ),
+    path(
+        "party/<uuid:party_uuid>/guests/mark-not-attending/",
+        views.mark_not_attending_partial,
+        name="partial_mark_not_attending",
+    ),
+]
+
 
 urlpatterns = (
     list_parties_urlpatterns
     + party_detail_urlpatterns
     + new_party_urlpatterns
     + gift_registry_urlpatterns
+    + guest_list_urlpatterns
 )
