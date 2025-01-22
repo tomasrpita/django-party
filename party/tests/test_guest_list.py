@@ -1,3 +1,5 @@
+import pytest
+
 from django.urls import reverse
 
 from party.models import Guest
@@ -66,15 +68,88 @@ def test_mark_guest_not_attending(
     assert len(list(response.context["guests"])) == 2
 
 
-def test_search_guests(authenticated_client, create_user, create_party, create_guest):
-    party = create_party(organizer=create_user)
+# def test_search_guests(authenticated_client, create_user, create_party, create_guest):
+#     party = create_party(organizer=create_user)
 
-    create_guest(party=party, name="Nela")
-    create_guest(party=party, name="Tomás")
+#     create_guest(party=party, name="Nela")
+#     create_guest(party=party, name="Tomás")
+
+#     url = reverse("partial_filter_guests", args=[party.uuid])
+#     data = {"guest_search": "Ne"}
+
+#     response = authenticated_client(create_user).post(url, data)
+
+#     assert len(list(response.context["guests"])) == 1
+
+
+@pytest.mark.parametrize(
+    "guest_attending_status,  search_text, attending_filter, expected_number_of_filtered_guests",
+    [
+        (True, "an", "all", 1),  # should pass, this is the same as before
+        (True, "be", "all", 0),  # should pass, this is the same as before
+        (True, "be", "attending", 0),  # should pass since search doesn't match
+        (True, "be", "not_attending", 0),  # should pass since search doesn't match
+        (
+            True,
+            "an",
+            "attending",
+            1,
+        ),  # should pass since search matches and status isn't checked
+        (
+            True,
+            "an",
+            "not_attending",
+            0,
+        ),  # should fail since search matches but filter doesn't
+        (True, "", "attending", 1),  # should pass since empty search matches the result
+        (
+            True,
+            "",
+            "not_attending",
+            0,
+        ),  # should fail, since search matches, but filter doesn't
+        (False, "an", "all", 1),  # should pass since filter is "all"
+        (False, "be", "all", 0),  # should pass since filter is "all"
+        (False, "be", "attending", 0),  # should pass since search doesn't match
+        (False, "be", "not_attending", 0),  # should pass since search doesn't match
+        (
+            False,
+            "an",
+            "attending",
+            0,
+        ),  # should fail since "an" matches, but "attending" shouldn't
+        (
+            False,
+            "an",
+            "not_attending",
+            1,
+        ),  # should pass since filter matches even if not checked
+        (False, "", "attending", 0),  # should fail since filter doesn't match output
+        (
+            False,
+            "",
+            "not_attending",
+            1,
+        ),  # should pass since filter matches output even if not checked
+    ],
+)
+def test_filter_guest_by_status_and_search(
+    guest_attending_status,
+    search_text,
+    attending_filter,
+    expected_number_of_filtered_guests,
+    authenticated_client,
+    create_user,
+    create_party,
+    create_guest,
+):
+    party = create_party(organizer=create_user)
+    create_guest(party=party, name="Anna", attending=guest_attending_status)
 
     url = reverse("partial_filter_guests", args=[party.uuid])
-    data = {"guest_search": "Ne"}
+
+    data = {"attending_filter": attending_filter, "guest_search": search_text}
 
     response = authenticated_client(create_user).post(url, data)
 
-    assert len(list(response.context["guests"])) == 1
+    assert len(response.context["guests"]) == expected_number_of_filtered_guests
