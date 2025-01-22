@@ -46,3 +46,14 @@ def mark_not_attending_partial(request, party_uuid):
     return render(
         request, "party/guest_list/partial_guest_list.html", {"guests": guests}
     )
+
+
+@login_required
+@require_http_methods(["POST"])
+def filter_guests_partial(request, party_uuid):
+    search_text = request.POST.get("guest_search")
+    guests = Guest.objects.filter(party_id=party_uuid, name__icontains=search_text)
+
+    return render(
+        request, "party/guest_list/partial_guest_list.html", {"guests": guests}
+    )

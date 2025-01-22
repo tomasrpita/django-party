@@ -64,3 +64,17 @@ def test_mark_guest_not_attending(
 
     assert response.status_code == 200
     assert len(list(response.context["guests"])) == 2
+
+
+def test_search_guests(authenticated_client, create_user, create_party, create_guest):
+    party = create_party(organizer=create_user)
+
+    create_guest(party=party, name="Nela")
+    create_guest(party=party, name="Tomás")
+
+    url = reverse("partial_filter_guests", args=[party.uuid])
+    data = {"guest_search": "Ne"}
+
+    response = authenticated_client(create_user).post(url, data)
+
+    assert len(list(response.context["guests"])) == 1

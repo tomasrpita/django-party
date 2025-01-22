@@ -9,6 +9,7 @@ from .guest_list_views import (
     GuestListPage,
     mark_attending_partial,
     mark_not_attending_partial,
+    filter_guests_partial,
 )
 from .new_party_views import (
     page_new_party,
@@ -33,4 +34,5 @@ __all__ = [
     "GuestListPage",
     "mark_attending_partial",
     "mark_not_attending_partial",
+    "filter_guests_partial",
 ]

@@ -2,6 +2,19 @@
 
 {% block content %}
     <div class="w-2/5 bg-white shadow-md m-auto">
+        <div class="bg-gray-50 p-4 grid grid-cols-2">
+            <div>
+                <input type="search"
+                    class="p-2 bg-transparent border-x-transparent border-t-transparent border-b-gray-400 focus:border-x-transparent focus:border-t-transparent focus:border-b-gray-600 focus:ring-0"
+                    placeholder="Search guests"
+                    name="guest_search"
+                    hx-post="{% url 'partial_filter_guests' party_id %}"
+                    hx-target="#guests"
+                    hx-trigger="keyup delay:500ms, search"
+                >
+            </div>
+        </div>
+
         <form class="table text-left text-gray-500 table-fixed min-w-fit p-8" id="guest-form">
             <div class="table-row-group" id="guests">
                 {% include 'party/guest_list/partial_guest_list.html' %}
