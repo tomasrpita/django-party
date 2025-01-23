@@ -98,6 +98,7 @@ def test_party_list_page_returns_paginated_list_of_parties(
     assert len(list(response.context["parties"])) == 1
 
 
+# FAIL
 def test_party_list_page_returns_different_template_for_htmx_request(
     authenticated_client, create_user
 ):
