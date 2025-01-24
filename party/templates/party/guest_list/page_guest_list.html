@@ -1,6 +1,29 @@
 {% extends 'party/base.html' %}
 
 {% block content %}
+    <div class=" min-w-fit m-auto text-right "
+    x-data="{ guest_count: false }"
+    >
+        <template x-teleport="#guest_list_container">
+            <div class="p-3 text-center border-custom-blue border-2 rounded-md border-solid bg-sky-200 mx-auto mt-3"
+                    x-show="guest_count"
+            >
+                <p class="text-custom-blue">{{ guests|length }} guest{{ guests|pluralize }} {{ guests|pluralize:"is,are" }} invited to the party.</p>
+                <p class="text-custom-blue">{{ attending_num }} guest{{ guests|pluralize }} {{ guests|pluralize:"is,are" }} attending the party.</p>
+            </div>
+        </template>
+
+        <button class="btn-default mb-3 text-sm"
+            x-on:click="guest_count = !guest_count"
+            x-text="guest_count ? 'Hide guest count' : 'Show guest count'"
+        >
+
+        </button>
+    </div>
+
+
+
+<div id="guest_list_container">
     <div class="bg-white shadow-md m-auto">
 
         <form
@@ -65,4 +88,5 @@
             </button>
         </div>
     </div>
+</div>
 {% endblock %}
