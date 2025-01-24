@@ -7,10 +7,24 @@
             {% include 'party/party_detail/partial_party_detail.html' %}
         </section>
 
-        <a href="{% url 'page_party_list' %}"
-        class="bg-custom-blue w-[40px] h-[40px] flex justify-center items-center text-custom-powder-light rounded-full hover:bg-custom-blue-light"
+
+        <div x-data="{ tooltipShow: false }"
+             class="relative"
         >
-            &#8249;
-        </a>
+
+            <div x-show="tooltipShow"
+                 class="p-2 bg-custom-blue text-[10px] text-white absolute bottom-8 left-10 rounded-lg opacity-60 bottom-full"
+            >
+                Back to list of parties.
+            </div>
+
+            <a href="{% url 'page_party_list' %}"
+                class="bg-custom-blue w-[40px] h-[40px] flex justify-center items-center text-custom-powder-light rounded-full hover:bg-custom-blue-light"
+                x-on:mouseover="tooltipShow = true" 
+                x-on:mouseout="tooltipShow = false" 
+            >
+                &#8249;
+            </a>
+        </div>
     </div>
 {% endblock %}
