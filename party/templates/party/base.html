@@ -25,7 +25,7 @@
         </a>
         
         {% if user.is_authenticated %}
-        <a href="" class="inline-block p-4 text-custom-powder-light float-right">
+        <a href="{% url 'account_logout' %}" class="inline-block p-4 text-custom-powder-light float-right">
             Logout
         </a>
         {% else %}
