@@ -33,7 +33,10 @@ def mark_attending_partial(request, party_uuid):
     guests = Guest.objects.filter(party_id=party_uuid)
 
     return render(
-        request, "party/guest_list/partial_guest_list.html", {"guests": guests}
+        request,
+        # "party/guest_list/partial_guest_list.html",
+        "party/guest_list/partial_guest_filter_and_list.html",
+        {"guests": guests, "party_id": party_uuid},
     )
 
 
@@ -46,7 +49,10 @@ def mark_not_attending_partial(request, party_uuid):
     guests = Guest.objects.filter(party_id=party_uuid)
 
     return render(
-        request, "party/guest_list/partial_guest_list.html", {"guests": guests}
+        request,
+        # "party/guest_list/partial_guest_list.html",
+        "party/guest_list/partial_guest_filter_and_list.html",
+        {"guests": guests, "party_id": party_uuid},
     )
 
 
