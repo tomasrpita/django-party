@@ -7,18 +7,30 @@
 asgiref==3.8.1
     # via
     #   django
+    #   django-allauth
     #   django-browser-reload
+certifi==2024.12.14
+    # via requests
+cffi==1.17.1
+    # via cryptography
+charset-normalizer==3.4.1
+    # via requests
 crispy-bootstrap5==2024.10
     # via -r requirements.in
 crispy-tailwind==1.0.3
     # via -r requirements.in
+cryptography==44.0.0
+    # via pyjwt
 django==5.1.4
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
     #   crispy-tailwind
+    #   django-allauth
     #   django-browser-reload
     #   django-crispy-forms
+django-allauth[socialaccount]==65.3.1
+    # via -r requirements.in
 django-browser-reload==1.17.0
     # via -r requirements.in
 django-crispy-forms==2.3
@@ -26,17 +38,33 @@ django-crispy-forms==2.3
     #   -r requirements.in
     #   crispy-bootstrap5
     #   crispy-tailwind
+idna==3.10
+    # via requests
 iniconfig==2.0.0
     # via pytest
+oauthlib==3.2.2
+    # via requests-oauthlib
 packaging==24.2
     # via pytest
 pluggy==1.5.0
     # via pytest
+pycparser==2.22
+    # via cffi
+pyjwt[crypto]==2.10.1
+    # via django-allauth
 pytest==8.3.4
     # via
     #   -r requirements.in
     #   pytest-django
 pytest-django==4.9.0
     # via -r requirements.in
+requests==2.32.3
+    # via
+    #   django-allauth
+    #   requests-oauthlib
+requests-oauthlib==2.0.0
+    # via django-allauth
 sqlparse==0.5.3
     # via django
+urllib3==2.3.0
+    # via requests

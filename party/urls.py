@@ -84,6 +84,7 @@ guest_list_urlpatterns = [
     ),
 ]
 
+general_urlpatterns = [path("login/", views.LoginPage.as_view(), name="party_login")]
 
 urlpatterns = (
     list_parties_urlpatterns
@@ -91,4 +92,5 @@ urlpatterns = (
     + new_party_urlpatterns
     + gift_registry_urlpatterns
     + guest_list_urlpatterns
+    + general_urlpatterns
 )

@@ -38,8 +38,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_browser_reload",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook",
     "crispy_forms",
+    "django_browser_reload",
     # "crispy_bootstrap5",
     "crispy_tailwind",
     "party",
@@ -54,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -135,7 +142,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
 CRISPY_TEMPLATE_PACK = "tailwind"
 
 # LOGGING = {
@@ -177,3 +183,14 @@ CRISPY_TEMPLATE_PACK = "tailwind"
 #         },
 #     },
 # }
+
+LOGIN_REDIRECT_URL = "page_party_list"
+LOGIN_URL = "party_login"
+
+AUTHENTICATION_BACKENDS = ("allauth.account.auth_backends.AuthenticationBackend",)
+
+SITE_ID = 1  # needs to match the Site ID in the admin
+ACCOUNT_EMAIL_VERIFICATION = "none"  # no email verification needed
+SOCIALACCOUNT_LOGIN_ON_GET = True  # skip additional confirm page, less secure
+ACCOUNT_LOGOUT_ON_GET = True  # skip the confirm logout page
+ACCOUNT_UNIQUE_EMAIL = True

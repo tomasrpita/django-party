@@ -18,6 +18,7 @@ from .new_party_views import (
 )
 from .party_details_views import PartyDetailPage, PartyDetailPartial
 from .party_list_views import PartyListPage
+from .general_views import LoginPage
 
 __all__ = [
     "PartyListPage",
@@ -35,4 +36,5 @@ __all__ = [
     "mark_attending_partial",
     "mark_not_attending_partial",
     "filter_guests_partial",
+    "LoginPage",
 ]
