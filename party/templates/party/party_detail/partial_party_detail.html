@@ -13,6 +13,7 @@
     <button class="btn-default mr-0 ml-auto block"
             hx-get="{% url 'partial_party_detail' party.uuid %}"
             hx-target="#party-detail"
+            data-cy="edit-party-button"
     >
         Edit
     </button>

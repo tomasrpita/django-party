@@ -4,3 +4,7 @@ __pycache__
 *.pyc
 debug.log
 db.sqlite3
+
+
+# other ignores
+cypress.env.json
