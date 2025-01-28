@@ -21,13 +21,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-^w=s!6w9_5utrez_zg+9xfi_))=*_jcotf33q7v1-h2=+-x^_y"
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    default="django-insecure-^w=s!6w9_5utrez_zg+9xfi_))=*_jcotf33q7v1-h2=+-x^_y",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS", default="127.0.0.1 localhost [::1]"
+).split(" ")
 
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    "CSRF_TRUSTED_ORIGINS", default="http://127.0.0.1:8000 http://localhost:8000"
+).split(" ")
 
 # Application definition
 
@@ -38,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "whitenoise.runserver_nostatic",
     "django.contrib.sites",
     "allauth",
     "allauth.account",
@@ -53,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -194,3 +204,12 @@ ACCOUNT_EMAIL_VERIFICATION = "none"  # no email verification needed
 SOCIALACCOUNT_LOGIN_ON_GET = True  # skip additional confirm page, less secure
 ACCOUNT_LOGOUT_ON_GET = True  # skip the confirm logout page
 ACCOUNT_UNIQUE_EMAIL = True
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
