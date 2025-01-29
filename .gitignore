@@ -10,3 +10,4 @@ db.sqlite3
 cypress.env.json
 
 .env
+postgresql

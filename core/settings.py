@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -107,6 +108,7 @@ DATABASES = {
     }
 }
 
+DATABASES["default"] = dj_database_url.config(default="sqlite:///db.sqlite3")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

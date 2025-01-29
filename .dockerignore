@@ -1,7 +1,8 @@
-venv
+.venv
 .dockerignore
 Dockerfile
 .git
 .gitignore
 .pytest_cache
 .github
+postgresql

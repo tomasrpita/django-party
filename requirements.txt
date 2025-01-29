@@ -21,11 +21,14 @@ crispy-tailwind==1.0.3
     # via -r requirements.in
 cryptography==44.0.0
     # via pyjwt
+dj-database-url==2.3.0
+    # via -r requirements.in
 django==5.1.4
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
     #   crispy-tailwind
+    #   dj-database-url
     #   django-allauth
     #   django-browser-reload
     #   django-crispy-forms
@@ -52,6 +55,10 @@ packaging==24.2
     #   pytest
 pluggy==1.5.0
     # via pytest
+psycopg==3.2.4
+    # via -r requirements.in
+psycopg-binary==3.2.4
+    # via -r requirements.in
 pycparser==2.22
     # via cffi
 pyjwt[crypto]==2.10.1
@@ -72,6 +79,8 @@ requests-oauthlib==2.0.0
     # via django-allauth
 sqlparse==0.5.3
     # via django
+typing-extensions==4.12.2
+    # via dj-database-url
 urllib3==2.3.0
     # via requests
 whitenoise==6.8.2

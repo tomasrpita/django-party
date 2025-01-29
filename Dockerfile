@@ -79,4 +79,4 @@ RUN chown -R app:app $HOME
 # change to the app user
 USER app
 # serve the application
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
+# CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000"]
